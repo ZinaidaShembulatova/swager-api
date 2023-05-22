@@ -88,6 +88,7 @@ paths:
             - CANCELLED
             - IN_PROGRESS
             - COMPLETED
+            - CONFIRMED
       responses:
         "200":
           description: OK
@@ -120,6 +121,7 @@ components:
             - CANCELLED
             - IN_PROGRESS
             - COMPLETED
+            - CONFIRMED
         recipient:
           type: object
           properties:
@@ -182,6 +184,7 @@ components:
             - CANCELLED
             - IN_PROGRESS
             - COMPLETE
+            - CONFIRMED
     ResponseGetListOrder:
       type: array
       items:
