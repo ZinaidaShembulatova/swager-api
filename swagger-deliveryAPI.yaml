@@ -48,6 +48,30 @@ paths:
                 $ref: '#/components/schemas/ResponseGetInfoOrder'
         "404":
           description: Not found. Заказ не найден
+    patch:
+      summary: Обновить статус заказа
+      description: Метод позволяет частично обновить информацию о заказе доставки отправления, а именно статус заказа
+      parameters:
+      - name: number
+        in: path
+        description: Номер заказа
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestUpdateStatus'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGetInfoOrder'
+        "404":
+          description: Not found. Заказ не найден
 components:
   schemas:
     ResponseGetInfoOrder:
@@ -122,3 +146,14 @@ components:
           example: CREATED
           enum:
           - CREATED
+    RequestUpdateStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Статус заказа
+          example: CREATED
+          enum:
+            - CANCELLED
+            - IN_ PROGRESS
+            - COMPLETED
