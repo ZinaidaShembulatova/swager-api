@@ -86,7 +86,7 @@ paths:
           enum:
             - CREATED
             - CANCELLED
-            - IN_ PROGRESS
+            - IN_PROGRESS
             - COMPLETED
       responses:
         "200":
@@ -118,7 +118,7 @@ components:
           enum:
             - CREATED
             - CANCELLED
-            - IN_ PROGRESS
+            - IN_PROGRESS
             - COMPLETED
         recipient:
           type: object
@@ -180,7 +180,7 @@ components:
           example: CREATED
           enum:
             - CANCELLED
-            - IN_ PROGRESS
+            - IN_PROGRESS
             - COMPLETE
     ResponseGetListOrder:
       type: array
