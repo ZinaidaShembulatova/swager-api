@@ -1,0 +1,124 @@
+---
+openapi: 3.0.0
+info:
+  title: API сервиса доставки отправлений
+  description: ""
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/ZINASHEMBULATOVA/deliveryAPI-test/1.0.0
+  description: тест
+- url: https://virtserver.swaggerhub.com/ZINASHEMBULATOVA/deliveryAPI/1.0.0
+  description: прод
+paths:
+  /order:
+    post:
+      summary: Создать заказ доставки
+      description: Метод позволяет создать заказ доставки отправления
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestCreateOrder'
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseCreateOrder'
+        "400":
+          description: Bad Request
+  /order/{number}:
+    get:
+      summary: Получить информацию о заказе доставки
+      description: Метод позволяет получить информацию о заказе доставки отправления
+      parameters:
+      - name: number
+        in: path
+        description: Номер заказа
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGetInfoOrder'
+        "404":
+          description: Not found. Заказ не найден
+components:
+  schemas:
+    ResponseGetInfoOrder:
+      type: object
+      properties:
+        number:
+          type: integer
+          description: Номер заказа
+          format: int64
+          example: 1034567
+        barcode:
+          type: string
+          description: Номер отправления
+          example: 80080184811117
+        status:
+          type: string
+          description: Статус заказа
+          example: CREATED
+          enum:
+            - CREATED
+            - CANCELLED
+            - IN_ PROGRESS
+            - COMPLETED
+        recipient:
+          type: object
+          properties:
+           name:
+            type: string
+            description: Имя получателя
+            example: Иванов Иван
+           address:
+            type: string
+            description: Адрес получателя  
+            example: Санкт-Петербург, Невский проспект, 1
+           phone:
+            type: string
+            description: Телефон
+            example: 8-911-933-8902
+    RequestCreateOrder:
+      type: object
+      properties:
+        barcode:
+          type: string
+          description: Номер отправления
+          example: 80080184811117
+        recipient:
+          type: object
+          properties:
+           name:
+            type: string
+            description: Имя получателя
+            example: Иванов Иван
+           address:
+            type: string
+            description: Адрес получателя  
+            example: Санкт-Петербург, Невский проспект, 1
+           phone:
+            type: string
+            description: Телефон
+            example: 8-911-933-8902
+    ResponseCreateOrder:
+      type: object
+      properties:
+        number:
+          type: integer
+          description: Номер заказа
+          format: int64
+          example: 78900006
+        status:
+          type: string
+          description: Статус заказа
+          example: CREATED
+          enum:
+          - CREATED
