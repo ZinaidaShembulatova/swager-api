@@ -72,6 +72,31 @@ paths:
                 $ref: '#/components/schemas/ResponseGetInfoOrder'
         "404":
           description: Not found. Заказ не найден
+  /order/findByStatus:
+    get:
+      summary: Получить список заказов с фильтрацией по статусу заказа
+      description: Метод позволяет получить список заказов доставки отправления с фильтрацией по статусу заказа
+      parameters:
+      - name: status
+        in: query
+        description: Статус заказа
+        required: true
+        schema:
+          type: string
+          enum:
+            - CREATED
+            - CANCELLED
+            - IN_ PROGRESS
+            - COMPLETED
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGetListOrder'
+        "400":
+          description: Bad request
 components:
   schemas:
     ResponseGetInfoOrder:
@@ -156,4 +181,8 @@ components:
           enum:
             - CANCELLED
             - IN_ PROGRESS
-            - COMPLETED
+            - COMPLETE
+    ResponseGetListOrder:
+      type: array
+      items:
+        $ref: '#/components/schemas/ResponseGetInfoOrder'
