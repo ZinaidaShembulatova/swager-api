@@ -179,11 +179,11 @@ components:
         status:
           type: string
           description: Статус заказа
-          example: CREATED
+          example: CANCELLED
           enum:
             - CANCELLED
             - IN_PROGRESS
-            - COMPLETE
+            - COMPLETED
             - CONFIRMED
     ResponseGetListOrder:
       type: array
